@@ -53,6 +53,49 @@ Como instalar o Haste Archives Content:
 5. Edite o conteúdo dos seus posts como desejar
 6. Use a API do plugin para retornar os dados no archives.php e archives-{post_type}.php do seu tema
 
+API
+===
+
+haste_archive_content()
+-----------------------
+
+This function need to be used within the archive or archive-{post_type} templates.
+Returns the object of the post from Archives custom post type related to the current
+archive that has being displayed.
+
+get_haste_archive_content( [string post_type] )
+-----------------------
+Returns the object of the post from Archives custom post type from the given post type
+passed as parameter to the function.
+
+Examples
+--------
+
+**Displaying Content and Custom Field**
+
+```	
+<?php
+	$archive_post = haste_archive_content(); 
+	
+	echo $archive_post->post_content;
+		
+	$subtitle = get_post_meta( $archive_post->ID, 'subtitle', true );
+		
+	if( ! empty( $subtitle ) ) {
+			echo $subtitle;
+	}
+?>
+```
+	
+**Displaying Title from a given post type**
+```
+<?php
+	$archive_post = get_haste_archive_content( 'video' ); 
+	
+	echo $archive_post->post_title;
+?>
+```
+
 FAQ
 ===
 
